@@ -1,0 +1,39 @@
+volumes:
+  mysql_data:
+
+services:
+  setup:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile
+    command: ["sh", "/usr/local/bin/setup.sh"]
+    volumes:
+      - ./docker/setup.sh:/usr/local/bin/setup.sh:ro
+      - ./:/srv/app:rw
+    depends_on:
+      - database
+
+  php:
+    build:
+      context: .
+      dockerfile: ./docker/Dockerfile  
+    ports:
+      - target: 8080
+        published: 8080
+        protocol: tcp
+    volumes:
+      - ./:/srv/app:rw
+    depends_on:
+      - database
+
+  database:
+    image: mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=rootpassword123
+      - MYSQL_DATABASE=food-service-db
+      - MYSQL_USER=foodservice
+      - MYSQL_PASSWORD=ilovephp
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql

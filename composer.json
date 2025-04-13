@@ -1,0 +1,22 @@
+{
+    "name": "chau-nm/php-food-service",
+    "description": "food webservice",
+    "type": "project",
+    "require": {
+        "php": ">=8.2"
+    },
+    "require-dev": {
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "app\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "chau-nm",
+            "email": "chaunm.146.2001@gmail.com"
+        }
+    ]
+}
