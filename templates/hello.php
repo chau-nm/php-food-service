@@ -5,8 +5,6 @@
     <title>Document</title>
 </head>
 <body>
-<?php
-    echo json_encode($rp);
-?>
+    <?=$message?>
 </body>
 </html>

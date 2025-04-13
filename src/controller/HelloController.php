@@ -13,9 +13,8 @@ class HelloController extends AbstractController
 {
     public function sayHello(Request $request): ViewResponse
     {
-        $response = new ErrorResponse("aaaaa");
         return $this->render("hello", [
-            "rp" => $response
+            "message" => "Hello world!"
         ]);
     }
 }
