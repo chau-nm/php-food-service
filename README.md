@@ -16,3 +16,13 @@
 ```
 docker compose up -d
 ```
+
+2. Docker exec
+```
+docker compose exec php bash
+```
+
+3. Composer install
+```
+composer install
+```
