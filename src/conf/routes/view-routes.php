@@ -4,8 +4,8 @@ use app\enum\HttpMethod;
 
 return [
     [
-        "url" => "/hello",
+        "url" => "/",
         "method" => HttpMethod::GET,
-        "controller" => "HelloController::sayHello",
+        "controller" => "HomeController::view",
     ]
 ];
