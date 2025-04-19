@@ -39,10 +39,6 @@ class User
 
     public static function fromQueryArrayResult(array $queryArrayResult): array
     {
-        $users = [];
-        foreach ($queryArrayResult as $user) {
-            $users[] = static::fromQueryResult($user);
-        }
-        return $users;
+        return array_map(fn($row) => static::fromQueryResult($row), $queryArrayResult);
     }
 }
