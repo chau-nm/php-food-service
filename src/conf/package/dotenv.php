@@ -1,3 +1,3 @@
 <?php
-$dotenv = Dotenv\Dotenv::createImmutable(PROJECT_ROOT, ".env");
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . "/../../../", ".env");
 $dotenv->load();
