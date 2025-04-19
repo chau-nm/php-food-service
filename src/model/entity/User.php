@@ -15,13 +15,34 @@ class User
         public string              $address,
         public ?string             $avatar,
         public \DateTimeImmutable  $createdAt,
-        public ?\DateTimeImmutable $updatedAt,
+        public ?\DateTimeImmutable $updatedAt
     )
     {
     }
 
-//    public static fromQueryResult(array $result): static
-//    {
-//        return new self();
-//    }
+    public static function fromQueryResult(array $queryResult): static
+    {
+        return new static(
+            $queryResult['uuid'],
+            $queryResult['username'],
+            $queryResult['hash_password'],
+            $queryResult['email'],
+            $queryResult['first_name'],
+            $queryResult['last_name'],
+            $queryResult['phone'],
+            $queryResult['address'],
+            $queryResult['avatar'],
+            isset($queryResult['created_at']) ? new \DateTimeImmutable($queryResult['created_at']) : null,
+            isset($queryResult['updated_at']) ? new \DateTimeImmutable($queryResult['updated_at']) : null
+        );
+    }
+
+    public static function fromQueryArrayResult(array $queryArrayResult): array
+    {
+        $users = [];
+        foreach ($queryArrayResult as $user) {
+            $users[] = static::fromQueryResult($user);
+        }
+        return $users;
+    }
 }
