@@ -1,0 +1,86 @@
+/* --- footer-menu --- */
+.footer {
+    padding: 20px 80px;
+    background-color: #202124;
+
+}
+.footer-menu {
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.footer-menu .col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 10px;
+}
+.footer-menu .col a{
+    color: #fff;
+    font-size: 14px;
+    padding-bottom: 5px;
+}
+.footer-menu .col a:hover{
+    color: #4287f5;
+}
+.footer-menu .col h4{
+    color: #fff;
+    font-size: 18px;
+    padding-bottom: 5px;
+    font-weight: 700;
+}
+.footer-menu .col p{
+    padding-bottom: 5px;
+    color: #fff;
+}
+.footer-menu .col i{
+    color: #fff;
+}
+.footer-menu .col img{
+    width: 136px;
+    height: cover;
+}
+
+/* --- */
+.footer-contact {
+    display: block;
+}
+.footer-contact .copyright {
+    text-align: center;
+    color: #fff;
+    font-size: 14px;
+    padding: 20px 10px;
+}
+.footer-contact .contact {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.footer-contact .contact .icon i{
+    font-size: 20px;
+    color: #fff;
+    padding: 5px;
+}
+.footer-contact .contact .icon i:hover {
+    color: #4287f5;
+}
+.footer-contact .contact h4 {
+    font-size: 20px;
+    color: #fff;
+    padding-bottom: 10px;
+}
+.footer-contact .contact h1 {
+    font-size: 30px;
+    color: #fff;
+    text-transform: uppercase;
+    padding-bottom: 10px;
+}
+.footer-contact .contact p{
+    font-size: 14px;
+    color: #fff;
+    padding-bottom: 10px;
+}
