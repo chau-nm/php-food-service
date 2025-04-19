@@ -45,7 +45,7 @@ class App
             ResponseHandler::handle(
                 new Response(
                     new ErrorResponse($e->getMessage()),
-                    HttpResponseCode::BAD_REQUEST
+                    $e->getHttpCode()
                 )
             );
         }

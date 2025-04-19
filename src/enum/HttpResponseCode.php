@@ -2,7 +2,7 @@
 
 namespace app\enum;
 
-enum HttpResponseCode
+enum HttpResponseCode: int
 {
     const OK = 200;
     const BAD_REQUEST = 400;
