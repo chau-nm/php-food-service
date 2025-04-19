@@ -83,23 +83,23 @@ class FoodRepository implements RepositoryInterface
 
         if ($exists) {
             $sql = "
-            UPDATE " . self::TABLE_NAME . " SET
-                name = :name,
-                description = :description,
-                image = :image,
-                price = :price,
-                updated_at = :updated_at,
-                updated_by = :updated_by
-            WHERE uuid = :uuid
-        ";
+                UPDATE " . self::TABLE_NAME . " SET
+                    name = :name,
+                    description = :description,
+                    image = :image,
+                    price = :price,
+                    updated_at = :updated_at,
+                    updated_by = :updated_by
+                WHERE uuid = :uuid
+            ";
         } else {
             $sql = "
-            INSERT INTO " . self::TABLE_NAME . " (
-                uuid, name, description, image, price, created_at, updated_at, created_by, updated_by
-            ) VALUES (
-                :uuid, :name, :description, :image, :price, :created_at, :updated_at, :created_by, :updated_by
-            )
-        ";
+                INSERT INTO " . self::TABLE_NAME . " (
+                    uuid, name, description, image, price, created_at, updated_at, created_by, updated_by
+                ) VALUES (
+                    :uuid, :name, :description, :image, :price, :created_at, :updated_at, :created_by, :updated_by
+                )
+            ";
         }
         $stmt = $this->db->prepare($sql);
         $result = $stmt->execute([
