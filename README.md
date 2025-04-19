@@ -1,5 +1,9 @@
 # php-food-service
 
+## SUMMARY
+A basic project about food order is built by php & docker. </br>
+The most of target for pratice php skill.
+
 ## INSTALL
 
 ### Requirement
