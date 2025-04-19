@@ -11,7 +11,7 @@
     <div class="header-menu-right">
         <button> ĐĂNG NHẬP </button>
         <span class="header-menu-cart"> 
-            <a href="">
+            <a href="/cart">
                 <?php include PROJECT_ROOT . "/public/assets/icon/ic_shop_card.svg" ?>
             </a>
         </span>
