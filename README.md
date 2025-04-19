@@ -26,3 +26,8 @@ docker compose exec php bash
 ```
 composer install
 ```
+
+4. Load database
+```
+composer load-db
+```
