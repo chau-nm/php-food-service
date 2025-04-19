@@ -7,5 +7,10 @@ return [
         "url" => "/",
         "method" => HttpMethod::GET,
         "controller" => "HomeController::view",
+    ],
+    [
+        "url" => "/cart",
+        "method" => HttpMethod::GET,
+        "controller" => "CartController::view",
     ]
 ];
