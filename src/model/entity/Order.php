@@ -2,8 +2,6 @@
 
 namespace app\model\entity;
 
-use app\enum\OrderStatus;
-
 class Order
 {
     public function __construct(

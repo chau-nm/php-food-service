@@ -2,7 +2,6 @@
 
 namespace app;
 
-use app\conf\Database;
 use app\enum\HttpResponseCode;
 use app\exception\AbstractException;
 use app\model\framework\ControllerHandler;

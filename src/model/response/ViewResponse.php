@@ -2,8 +2,6 @@
 
 namespace app\model\response;
 
-use app\model\serializable\AbstractSerializable;
-
 class ViewResponse
 {
     public function __construct(
