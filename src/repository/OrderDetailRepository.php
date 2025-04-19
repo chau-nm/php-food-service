@@ -3,28 +3,26 @@
 namespace app\repository;
 
 use app\conf\Database;
-use app\model\entity\Order;
+use app\model\entity\OrderDetail;
 
-class OrderRepository implements RepositoryInterface
+class OrderDetailRepository implements RepositoryInterface
 {
 
     private static $instance;
     private \PDO $db;
 
     private const FULL_ATTRIBUTES = "
-                `id`,
-                `user_uuid`,
-                `status`,
-                `address`,
-                `phone`,
-                `order_date`,
-                `created_at`,
-                `updated_at`,
-                `created_by`,
-                `updated_by`
+            `uuid`,
+            `order_id`,
+            `food_uuid`,
+            `amount`,
+            `created_at`,
+            `updated_at`,
+            `created_by`,
+            `updated_by`
     ";
 
-    private const TABLE_NAME = "`order`";
+    private const TABLE_NAME = "`order_detail`";
 
     private function __construct()
     {
@@ -39,13 +37,13 @@ class OrderRepository implements RepositoryInterface
         return self::$instance;
     }
 
-    public function findByKey(int|string $key): ?Order
+    public function findByKey(int|string $key): mixed
     {
-        $query = "SELECT " . self::FULL_ATTRIBUTES . " FROM " . self::TABLE_NAME . " WHERE `id` = ?";
+        $query = "SELECT " . self::FULL_ATTRIBUTES . " FROM " . self::TABLE_NAME . " WHERE `uuid` = ?";
         $prepare = $this->db->prepare($query);
         $prepare->execute([$key]);
         $result = $prepare->fetch(\PDO::FETCH_ASSOC);
-        return $result ? Order::fromQueryResult($result) : null;
+        return $result ? OrderDetail::fromQueryResult($result) : null;
     }
 
     public function findAll(): array
@@ -54,7 +52,7 @@ class OrderRepository implements RepositoryInterface
         $prepare = $this->db->prepare($query);
         $prepare->execute();
         $result = $prepare->fetchAll(\PDO::FETCH_ASSOC);
-        return Order::fromQueryArrayResult($result);
+        return OrderDetail::fromQueryArrayResult($result);
     }
 
     public function findBy(array $where): array
@@ -74,46 +72,43 @@ class OrderRepository implements RepositoryInterface
 
         $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
-        return Order::fromQueryArrayResult($results);
+        return OrderDetail::fromQueryArrayResult($results);
     }
 
     public function save(mixed $entity): mixed
     {
-        $stmt = $this->db->prepare("SELECT COUNT(`id`) FROM " . self::TABLE_NAME . " WHERE id = :id");
-        $stmt->execute(['id' => $entity->id]);
+        $stmt = $this->db->prepare("SELECT COUNT(`uuid`) FROM food WHERE uuid = :uuid");
+        $stmt->execute(['uuid' => $entity->uuid]);
         $exists = $stmt->fetchColumn() > 0;
 
         if ($exists) {
             $sql = "
-                UPDATE " . self::TABLE_NAME . " SET
-                    user_uuid = :user_uuid,
-                    status = :status,
-                    address = :address,
-                    phone = :phone,
-                    order_date = :order_date,
-                    updated_at = :updated_at,
-                    updated_by = :updated_by
-                WHERE id = :id
-            ";
+            UPDATE " . self::TABLE_NAME . " SET
+                name = :name,
+                description = :description,
+                image = :image,
+                price = :price,
+                updated_at = :updated_at,
+                updated_by = :updated_by
+            WHERE uuid = :uuid
+        ";
         } else {
             $sql = "
-                INSERT INTO " . self::TABLE_NAME . " (
-                    id, user_uuid, status, address, phone, order_date, created_at, updated_at, created_by, updated_by
-                ) VALUES (
-                    :id, :user_uuid, :status, :address, :phone, :order_date, :created_at, :updated_at, :created_by, :updated_by
-                )
-            ";
+            INSERT INTO " . self::TABLE_NAME . " (
+                uuid, name, description, image, price, created_at, updated_at, created_by, updated_by
+            ) VALUES (
+                :uuid, :name, :description, :image, :price, :created_at, :updated_at, :created_by, :updated_by
+            )
+        ";
         }
 
         $stmt = $this->db->prepare($sql);
-
         $result = $stmt->execute([
-            'id' => $entity->id,
-            'user_uuid' => $entity->userUuid,
-            'status' => $entity->status->value,
-            'address' => $entity->address,
-            'phone' => $entity->phone,
-            'order_date' => $entity->orderDate->format('Y-m-d H:i:s'),
+            'uuid' => $entity->uuid,
+            'name' => $entity->name,
+            'description' => $entity->description,
+            'image' => $entity->image,
+            'price' => $entity->price,
             'created_at' => $entity->createdAt->format('Y-m-d H:i:s'),
             'updated_at' => $entity->updatedAt ? $entity->updatedAt->format('Y-m-d H:i:s') : null,
             'created_by' => $entity->createdBy,
@@ -122,11 +117,11 @@ class OrderRepository implements RepositoryInterface
 
         return $result ? $entity : null;
     }
-    
+
     public function deleteByKey(string $key): int
     {
-        $stmt = $this->db->prepare("DELETE FROM " . self::TABLE_NAME . " WHERE id = :id");
-        $stmt->execute(['id' => $key]);
+        $stmt = $this->db->prepare("DELETE FROM " . self::TABLE_NAME . " WHERE uuid = :uuid");
+        $stmt->execute(['uuid' => $key]);
         return $stmt->rowCount();
     }
 }

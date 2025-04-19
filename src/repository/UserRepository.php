@@ -77,7 +77,7 @@ class UserRepository implements RepositoryInterface
         return User::fromQueryArrayResult($results);
     }
 
-    public function save(mixed $entity): ?User
+    public function save(mixed $entity): mixed
     {
         $stmt = $this->db->prepare("SELECT COUNT(`uuid`) FROM " . self::TABLE_NAME . " WHERE uuid = :uuid");
         $stmt->execute(['uuid' => $entity->uuid]);
@@ -127,14 +127,6 @@ class UserRepository implements RepositoryInterface
         ]);
 
         return $result ? $entity : null;
-    }
-
-    public function delete(mixed $entity): int
-    {
-        $uuid = $entity->uuid;
-        $stmt = $this->db->prepare("DELETE FROM " . self::TABLE_NAME . " WHERE uuid = :uuid");
-        $stmt->execute(['uuid' => $uuid]);
-        return $stmt->rowCount();
     }
 
     public function deleteByKey(string $key): int

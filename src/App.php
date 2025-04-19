@@ -13,6 +13,9 @@ use app\model\response\ErrorResponse;
 use app\model\response\Response;
 use app\model\response\ViewResponse;
 
+/**
+ * @copyright chau-nm
+ */
 class App
 {
     public static function handle(Request $request): void
