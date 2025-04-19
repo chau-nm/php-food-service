@@ -2,7 +2,6 @@
 
 namespace app;
 
-use app\conf\Database;
 use app\enum\HttpResponseCode;
 use app\exception\AbstractException;
 use app\model\framework\ControllerHandler;
@@ -13,6 +12,9 @@ use app\model\response\ErrorResponse;
 use app\model\response\Response;
 use app\model\response\ViewResponse;
 
+/**
+ * @copyright chau-nm
+ */
 class App
 {
     public static function handle(Request $request): void
@@ -42,7 +44,7 @@ class App
             ResponseHandler::handle(
                 new Response(
                     new ErrorResponse($e->getMessage()),
-                    HttpResponseCode::BAD_REQUEST
+                    $e->getHttpCode()
                 )
             );
         }
