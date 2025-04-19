@@ -1,0 +1,63 @@
+/* ---------- product ----------- */
+.prodetails{
+    padding: 80px 20%;
+}
+.page-block {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.page-block .block-left {
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.page-block .block-left img{
+    width: 500px;
+    height: auto;
+    border-radius: 5px;
+    transition: 0.2s ease;
+    position: relative;
+}
+.page-block .block-left img:hover {
+    border: 1px solid #5e6166;
+    border-radius: 5px;
+    transform: scale(1.02);
+}
+.page-block .block-right{
+    border: 1px solid #202124;
+    padding: 20px;
+    box-shadow: 0 0 8px 0 rgba(0, 0, 0, .4);
+}
+.page-block .block-right h5 {
+    font-size: 22px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #0b357a;
+    padding: 5px;
+}
+.page-block .block-right h5:hover{
+    color: #702a18;
+}
+.page-block .block-right span, p {
+    color: #202124;
+    font-size: 14px;
+    padding: 5px;
+}
+.page-block .block-right h6{
+    color: #702a18;
+    font-size: 20px;
+    padding: 5px;
+}
+.page-block .block-right button{
+    padding: 10px 70px;
+    background-color: #92d2f2;
+    border: 1px solid #0b357a;
+    border-radius: 5px;
+}
+.page-block .block-right button:hover {
+    background-color: #0b357a;
+    border: 1px solid #5e6166;
+    color: #fff;
+}
