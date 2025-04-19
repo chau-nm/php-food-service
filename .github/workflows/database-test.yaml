@@ -23,6 +23,16 @@ jobs:
             *.cache-from=type=gha,scope=refs/heads/develop
             *.cache-to=type=gha,scope=${{github.ref}},mode=max
 
+      - run: docker compose run -T php
+
+      - name: Healthcheck
+        uses: jtalk/url-health-check-action@v4
+        with:
+          url: 'http://localhost:8080/health'
+          max-attempts: 100
+          retry-delay: 1s
+          retry-all: true
+
       - run: docker compose up database -d
       - run: docker compose run -T setup
       - run: docker compose run -T setup composer load-db
