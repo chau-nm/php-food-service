@@ -2,7 +2,7 @@
 
 namespace app\enum;
 
-enum OrderStatus
+enum OrderStatus: string
 {
     const DRAFT = 'draft';
     const SENDING = 'sending';
