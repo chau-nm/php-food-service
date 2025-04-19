@@ -21,7 +21,9 @@
                         <img src="/assets/images/food/phocuon.jpg" alt="">
                     </div>
                     <div>
+                    <a href="/product">
                         <h5>Phở cuốn Hà Nội</h5>
+                    </a>    
                         <span>1 cuốn đầy đủ topping</span>
                         <h6> 10.000VND/cuốn </h6>
                     </div>
