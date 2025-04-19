@@ -4,6 +4,16 @@
 A basic project about food order is built by php & docker. </br>
 The most of target for pratice php skill.
 
+### Main feature
+
+<table>
+  <tr>
+    <td>Display food</td>
+    <td>Order</td>
+    <td>Payment</td>
+  </tr>
+</table>
+
 ## INSTALL
 
 ### Requirement
