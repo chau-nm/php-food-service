@@ -17,5 +17,8 @@
             "name": "chau-nm",
             "email": "chaunm.146.2001@gmail.com"
         }
-    ]
+    ],
+    "scripts": {
+        "load-db": "@php ./src/command/loadDatabase.php"
+    }
 }
