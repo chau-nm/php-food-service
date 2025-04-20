@@ -1,0 +1,133 @@
+/* --- Login---- */
+.login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;     
+}
+.login-page {
+    border: 1px solid #4287f5;
+    width: 500px;
+    height: auto;
+}
+/**/
+.login-page .login-name {
+    text-align: center;
+    padding: 50px;
+    background-image: url(/assets/images/bg/bg-login.jpg);
+    background-size: cover;
+    position: relative;
+}
+
+.login-name::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: #e1e1e1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+}
+
+.login-page .login-name h3 {
+    color: #052559;
+    padding: 10px;
+    font-size: 30px;
+    font-weight: 900;
+    text-transform: uppercase;
+    background: rgba(232, 230, 230, 0.5);
+    position: relative;
+    z-index: 999;
+}
+.login-page .login-name p {
+    color: #000;
+    font-size: 14px;
+    font-weight: 600;
+    position: relative;
+    z-index: 999;
+}
+.login-page .login-name a {
+    color: #0b357a;
+    padding-left: 5px;
+    position: relative;
+    z-index: 999;
+}
+/**/
+.login-form .form{
+    padding:  50px;
+}
+.login-form .form div{
+    padding-bottom: 10px;
+}
+.login-page .login-form {
+    width: 100%;
+    height: auto;
+}
+.login-form .form-group{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 5px ;
+}
+.login-form .form-group span i {
+    font-size: 25px;
+    color: #0b357a;
+    padding: 0 6px;
+}
+.login-form .form-group .email{
+    width: 100%;
+    height: 25px;
+    border: 1px solid #4287f5;
+    padding: 5px;
+}
+.login-form .form-group .passwords {
+    width: 100%;
+    height: 25px;
+    border: 1px solid #4287f5;
+    padding: 5px;
+}
+/**/
+.login-form .remember-row .rmb {
+    color: #4d4d4d;
+    padding: 5px;
+}
+.login-form .remember-row .forgotPwd {
+    padding: 5px;
+    color: #0b357a;
+}
+.login-form .remember-row .forgotPwd a:hover{
+    color: #ff0000;
+}
+
+/**/
+.login-form .btn-block{
+    padding-left: 5px;
+    text-align: center;
+}
+.login-form .btn-block button{
+    width: 80%;
+    height: 35px;
+    color: #0b357a;
+    font-size: 16px;
+    border: 1px solid #4287f5;
+    border-radius: 5px;
+}
+.login-form .btn-block button:hover {
+    color: #fff;
+    background-color: #4287f5;
+    border: 1px solid #4d4d4d;
+}
+
+/**/
+.login-form .login-email{
+    text-align: center;
+
+}
+.login-form .form-group .btn-block {
+    color: #0b357a;
+}
+.login-form .form-group .btn-block:hover{
+    color: #ff0000;
+}
+

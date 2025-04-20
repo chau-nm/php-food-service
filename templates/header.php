@@ -8,8 +8,10 @@
             <li> <a href=""> HỆ THỐNG NHÀ HÀNG </a> </li>
         </ul>
     </div>
-    <div class="header-menu-right">
-        <button> ĐĂNG NHẬP </button>
+    <div class="header-menu-right">   
+        <a href="/login">
+            <button> ĐĂNG NHẬP </button>
+        </a>
         <span class="header-menu-cart"> 
             <a href="/cart">
                 <?php include PROJECT_ROOT . "/public/assets/icon/ic_shop_card.svg" ?>
