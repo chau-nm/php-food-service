@@ -23,14 +23,14 @@
                 </p>
             </div>
             <div class="login-form">
-                <form name="loginForm" class="form" action="#" method="POST">
+                <form id="login-form" name="loginForm" class="form" action="#" method="POST">
                     <div class="form-group">
                         <span> <i class="fa-solid fa-user"></i> </span>
-                        <input type="email" class="email" name="username" placeholder="Email address">
+                        <input type="text" class="username" name="username" placeholder="Enter username">
                     </div>
                     <div class="form-group">
                         <span> <i class="fa-solid fa-lock"></i> </span>
-                        <input type="password" class="passwords" name="password" placeholder="Password">
+                        <input type="password" class="password" name="password" placeholder="Password">
                     </div>
                     <div class="remember-row">
                         <div class="rmb">
@@ -46,7 +46,7 @@
                         </div>
                     </div> 
                     <div class="btn-block">
-                        <button> 
+                        <button type="submit">
                             Đăng nhập 
                             <i class="fa-solid fa-arrow-right"></i>
                         </button>
@@ -60,4 +60,6 @@
             </div>
         </div>
     </section>
+
+    <script type="module" src="/assets/js/login.js"></script>
 </html>

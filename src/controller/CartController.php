@@ -10,6 +10,10 @@ class CartController extends AbstractController
 {
     public function view(Request $request): ViewResponse
     {
+        if (!$this->isLoggedIn()) {
+            $this->redirect("/login");
+        }
+
         return $this->render("cart");
     }
 }

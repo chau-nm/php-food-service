@@ -18,15 +18,15 @@ class RegisterRequest
 
     public static function load(Request $request): RegisterRequest
     {
-        $post = $request->getPost();
+        $post = json_decode($request->getContent());
         return new self(
-            $post['username'],
-            $post['password'],
-            $post['email'],
-            $post['firstName'],
-            $post['lastName'],
-            $post['phone'],
-            $post['address'],
+            $post->username,
+            $post->password,
+            $post->email,
+            $post->firstName,
+            $post->lastName,
+            $post->phone,
+            $post->address,
         );
     }
 }
