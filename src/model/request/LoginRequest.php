@@ -13,9 +13,9 @@ class LoginRequest
 
     public static function load(Request $request): static
     {
-        $post = $request->getPost();
-        $username = $post['username'] ?? '';
-        $password = $post['password'] ?? '';
+        $post = json_decode($request->getContent());
+        $username = $post->username ?? '';
+        $password = $post->password ?? '';
         return new self($username, $password);
     }
 }

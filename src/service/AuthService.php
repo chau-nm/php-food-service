@@ -34,6 +34,28 @@ class AuthService
         return self::$instance;
     }
 
+    public function getLoggedInUser(): ?UserDTO
+    {
+        $userUuid = $this->session->get(self::LOGIN_KEY);
+        if (empty($userUuid)) {
+            return null;
+        }
+        $user = $this->userRepository->findByKey($userUuid);
+        if (empty($user)) {
+            return null;
+        }
+        return new UserDTO(
+            $user->uuid,
+            $user->username,
+            $user->email,
+            $user->firstName,
+            $user->lastName,
+            $user->phone,
+            $user->address,
+            $user->avatar
+        );
+    }
+
     /**
      * @throws UnauthorizedException
      */

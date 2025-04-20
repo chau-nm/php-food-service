@@ -75,13 +75,13 @@
     color: #0b357a;
     padding: 0 6px;
 }
-.login-form .form-group .email{
+.login-form .form-group .username{
     width: 100%;
     height: 25px;
     border: 1px solid #4287f5;
     padding: 5px;
 }
-.login-form .form-group .passwords {
+.login-form .form-group .password {
     width: 100%;
     height: 25px;
     border: 1px solid #4287f5;
