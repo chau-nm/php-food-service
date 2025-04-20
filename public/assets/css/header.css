@@ -62,7 +62,7 @@
 .header-menu-right span {
     padding: 0 20px;
 }
-.header-menu-right a{
+.header-menu-right>span>a{
     padding: 7px;
     border: 1px solid #4287f5;
     color: #4287f5;
@@ -72,13 +72,13 @@
     justify-content: center;
     align-items: center;
 }
-.header-menu-right a:hover {
+.header-menu-right>span>a:hover {
     background-color: #4287f5;
     color: #fff;
     border: 1px solid #5e6166;
 }
 
-.header-menu-right a:hover svg {
+.header-menu-right>span>a:hover svg {
     fill: #ffffff;
 }
 
