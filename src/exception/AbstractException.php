@@ -5,7 +5,7 @@ namespace app\exception;
 use app\enum\HttpResponseCode;
 use Throwable;
 
-class AbstractException extends \Exception
+abstract class AbstractException extends \Exception
 {
 
     protected int $httpCode;
@@ -14,7 +14,7 @@ class AbstractException extends \Exception
         string    $message = "",
         int $httpCode = HttpResponseCode::INTERNAL_SERVER_ERROR,
         int       $code = 0,
-        Throwable $previous = null
+        ?Throwable $previous = null
     )
     {
         $this->httpCode = $httpCode;
