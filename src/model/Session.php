@@ -8,6 +8,9 @@ class Session
 
     private function __construct()
     {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
     }
 
     public static function getInstance(): Session
@@ -42,6 +45,11 @@ class Session
     public function delete(string $key): void
     {
         unset($_SESSION[$key]);
+    }
+
+    public function clear(): void
+    {
+        $_SESSION = [];
     }
 
     public function destroy(): void

@@ -48,6 +48,15 @@ class UserRepository implements RepositoryInterface
         return $result ? User::fromQueryResult($result) : null;
     }
 
+    public function findByUsername(string $username): ?User
+    {
+        $query = "SELECT " . self::FULL_ATTRIBUTES . " FROM " . self::TABLE_NAME . " WHERE `username` = ?";
+        $prepare = $this->db->prepare($query);
+        $prepare->execute([$username]);
+        $result = $prepare->fetch(\PDO::FETCH_ASSOC);
+        return $result ? User::fromQueryResult($result) : null;
+    }
+
     public function findAll(): array
     {
         $query = "SELECT " . self::FULL_ATTRIBUTES . " FROM " . self::TABLE_NAME;

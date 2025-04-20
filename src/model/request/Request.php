@@ -24,12 +24,12 @@ class Request
         return file_get_contents('php://input');
     }
 
-    public function getParams()
+    public function getParams(): array
     {
         return $_GET;
     }
 
-    public function getPost()
+    public function getPost(): array
     {
         return $_POST;
     }
