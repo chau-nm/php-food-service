@@ -1,0 +1,147 @@
+/* --- Signup ---- */
+.signup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.signup-page {
+    border: 1px solid #4287f5;
+    width: 500px;
+    height: auto;
+}
+
+/* Header section with background */
+.signup-page > div:first-child {
+    text-align: center;
+    padding: 50px;
+    background-image: url(/assets/images/bg/bg-signup.jpg);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.signup-page > div:first-child::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    background-color: #e1e1e1;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.3;
+}
+
+.signup-page h3 {
+    color: #052559;
+    padding: 10px;
+    font-size: 30px;
+    font-weight: 900;
+    text-transform: uppercase;
+    background: rgba(232, 230, 230, 0.5);
+    position: relative;
+    z-index: 999;
+}
+
+.signup-page p {
+    color: #000;
+    font-size: 14px;
+    font-weight: 600;
+    position: relative;
+    z-index: 999;
+}
+
+.signup-page a {
+    color: #0b357a;
+    padding-left: 5px;
+    position: relative;
+    z-index: 999;
+}
+
+/* Form styling */
+.signup-form form {
+    padding: 50px;
+}
+
+.signup-form .form-group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 10px;
+}
+
+.signup-form .form-group span i {
+    font-size: 25px;
+    color: #0b357a;
+    padding: 0 6px;
+}
+
+.signup-form .form-group input[type="text"],
+.signup-form .form-group input[type="password"] {
+    width: 100%;
+    height: 25px;
+    border: 1px solid #4287f5;
+    padding: 5px;
+}
+
+/* Remember & Forgot password row */
+.signup-form .remember-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 0;
+    color: #4d4d4d;
+}
+
+.signup-form .forgotPwd a {
+    color: #0b357a;
+}
+
+.signup-form .forgotPwd a:hover {
+    color: #ff0000;
+}
+
+/* Button */
+.signup-form .btn-block {
+    text-align: center;
+    padding: 10px 0;
+}
+
+.signup-form .btn-block button {
+    width: 80%;
+    height: 35px;
+    color: #0b357a;
+    font-size: 16px;
+    border: 1px solid #4287f5;
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+.signup-form .btn-block button:hover {
+    color: #fff;
+    background-color: #4287f5;
+    border: 1px solid #4d4d4d;
+}
+
+/* Signup with email */
+.signup-form .signup-email {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.signup-form .signup-email a {
+    color: #0b357a;
+    display: inline-block;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 8px 16px;
+    border: 1px solid #4287f5;
+    border-radius: 5px;
+}
+
+.signup-form .signup-email a:hover {
+    background-color: #4287f5;
+    color: #fff;
+    border-color: #4d4d4d;
+}

@@ -11,55 +11,59 @@
 
 <body>
 </body>
-    <section class="login">
-        <div class="login-page">
-            <div class="login-name">
-                <h3> Đăng nhập </h3>
-                <p> 
-                    Bạn chưa có tài khoản?
-                    <a class="" data-panel=".panel-signup" href="#">
-                        <u>Đăng ký miễn phí</u> 
-                    </a>
-                </p>
-            </div>
-            <div class="login-form">
-                <form id="login-form" name="loginForm" class="form" action="#" method="POST">
-                    <div class="form-group">
-                        <span> <i class="fa-solid fa-user"></i> </span>
-                        <input type="text" class="username" name="username" placeholder="Enter username">
-                    </div>
-                    <div class="form-group">
-                        <span> <i class="fa-solid fa-lock"></i> </span>
-                        <input type="password" class="password" name="password" placeholder="Password">
-                    </div>
-                    <div class="remember-row">
-                        <div class="rmb">
-                            <label class="checkbox">
-                                <input type="checkbox" value="remember-me">
-                                <span class="label-text">Ghi nhớ mật khẩu</span>
-                            </label>
-                        </div>
-                        <div class="forgotPwd">
-                            <p>
-                                <a data-panel=".panel-forgot" href="#">Quên mật khẩu?</a>
-                            </p>
-                        </div>
-                    </div> 
-                    <div class="btn-block">
-                        <button type="submit">
-                            Đăng nhập 
-                            <i class="fa-solid fa-arrow-right"></i>
-                        </button>
-                    </div>
-                    <div class="form-group login-email">
-                        <a href="" target="_blank" class="btn-block" type="button">
-                            Đăng nhập bằng Email
-                        </a>
-                    </div>
-                </form>
-            </div>
+<section class="login">
+    <div class="login-page">
+        <div class="login-name">
+            <h3> Đăng nhập </h3>
+            <p>
+                Bạn chưa có tài khoản?
+                <a class="" data-panel=".panel-signup" href="">
+                    <u>Đăng ký miễn phí</u>
+                </a>
+            </p>
         </div>
-    </section>
+        <div class="login-form">
+            <form id="login-form" name="loginForm" class="form" action="#" method="POST">
+                <div class="form-group">
+                    <span> <i class="fa-solid fa-user"></i> </span>
+                    <input type="text" class="username" name="username" placeholder="Enter username">
+                </div>
+                <div class="form-group">
+                    <span> <i class="fa-solid fa-lock"></i> </span>
+                    <input type="password" class="password" name="password" placeholder="Password">
+                </div>
+                <div class="remember-row">
+                    <div class="rmb">
+                        <label class="checkbox">
+                            <input type="checkbox" value="remember-me">
+                            <span class="label-text">Ghi nhớ mật khẩu</span>
+                        </label>
+                    </div>
+                    <div class="forgotPwd">
+                        <p>
+                            <a data-panel=".panel-forgot" href="#">Quên mật khẩu?</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="btn-block">
+                    <button type="submit">
+                        Đăng nhập
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </button>
+                </div>
+                <div class="form-group login-email">
+                    <a href="" target="_blank" class="btn-block" type="button">
+                        Đăng nhập bằng Email
+                    </a>
+                </div>
+                <div>
+                    <a href=""> Quay về trang chủ </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
 
-    <script type="module" src="/assets/js/login.js"></script>
+<script type="module" src="/assets/js/login.js"></script>
+
 </html>
