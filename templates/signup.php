@@ -16,26 +16,50 @@
                 <h3> Đăng ký tài khoản </h3>
                 <p>
                     *Nếu bạn đã có tài khoản
-                    <a href="login.php">
+                    <a href="#">
                         <u> Đăng nhập tài khoản </u>
                     </a>
                 </p>
             </div>
 
             <div class="signup-form">
-                <form action="">
+                <form id="signup-form" name="signupForm" class="form" action="#" method="POST">
+                    <!-- username -->
                     <div class="form-group">
                         <span> <i class="fa-solid fa-user"></i> </span>
                         <input type="text" class="username" name="username" placeholder="Enter username">
                     </div>
+                    <!-- password -->
                     <div class="form-group">
                         <span> <i class="fa-solid fa-lock"></i> </span>
                         <input type="password" class="password" name="password" placeholder="Enter Password">
                     </div>
+                    <!-- firstname -->
                     <div class="form-group">
-                        <span> <i class="fa-solid fa-lock"></i> </span>
-                        <input type="password" class="re-password" name="re-password" placeholder="Re-enter the password">
+                        <span> <i class="fa-solid fa-id-card"></i> </span>
+                        <input type="text" class="firstName" name="firstName" placeholder="Enter First Name">
                     </div>
+                    <!-- lastname -->
+                    <div class="form-group">
+                        <span> <i class="fa-solid fa-id-card"></i> </span>
+                        <input type="text" class="lastName" name="lastName" placeholder="Enter Last Name">
+                    </div>
+                    <!-- phone -->
+                    <div class="form-group">
+                        <span> <i class="fa-solid fa-email"></i> </span>
+                        <input type="text" class="email" name="email" placeholder="Enter Your Email">
+                    </div>
+                    <!-- phone -->
+                    <div class="form-group">
+                        <span> <i class="fa-solid fa-phone"></i> </span>
+                        <input type="text" class="phone" name="phone" placeholder="Enter Your Phone">
+                    </div>
+                    <!-- address -->
+                    <div class="form-group">
+                        <span> <i class="fa-solid fa-location-dot"></i> </span>
+                        <input type="text" class="address" name="address" placeholder="Enter Your Address">
+                    </div>
+                    <!--  -->
                     <div class="remember-row">
                         <div class="rmb">
                             <label class="checkbox">
@@ -55,18 +79,20 @@
                             <i class="fa-solid fa-arrow-right"></i>
                         </button>
                     </div>
-                    <div class="form-group login-email">
+                    <div class="form-group sign-email">
                         <a href="" target="_blank" class="btn-block" type="button">
                             Đăng ký bằng Email
                         </a>
                     </div>
                     <div>
-                        <a href="">Quay về trang chủ </a>
+                        <a href="#  "> &#8592; Quay về trang chủ </a>
                     </div>
                 </form>
             </div>
         </div>
     </section>
 </body>
+
+<script type="module" src="/assets/js/signup.js"></script>
 
 </html>
