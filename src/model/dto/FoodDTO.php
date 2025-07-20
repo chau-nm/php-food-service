@@ -8,7 +8,7 @@ class FoodDTO
         public string $uuid,
         public string $name,
         public ?string $description,
-        public string $image,
+        public ?string $image,
         public int  $price,
         public string $createdAt,
         public ?string $updatedAt,
