@@ -27,5 +27,10 @@ return [
         "url" => "/signup",
         "method" => HttpMethod::GET,
         "controller" => "SignupController::view",
+    ],
+    [
+        "url" => "/about",
+        "method" => HttpMethod::GET,
+        "controller" => "AboutController::view",
     ]
 ];

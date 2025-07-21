@@ -1,0 +1,239 @@
+.page-header {
+    position: relative;
+    background-image: url('/assets/images/bg/abouthead1.jpg');
+    width: 100%;
+    height: 40vh;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    color: #fff;
+}
+
+/* Thêm lớp overlay mờ tối để chữ nổi bật hơn */
+.page-header::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(157, 160, 160, 0.6);
+    z-index: 0;
+}
+
+.page-header h2,
+.page-header>p {
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+.page-header h2 {
+    font-size: 3rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.3em;
+}
+
+/* ...container... */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.container .section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 60px;
+    gap: 40px;
+}
+
+.container .section img {
+    flex: 1 1 40%;
+    max-width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 128, 255, 0.1);
+}
+
+.container .section .text {
+    flex: 1 1 55%;
+    color: #003366;
+    text-align: justify;
+}
+
+.container .section h3 {
+    font-size: 28px;
+    color: #007BFF;
+    /* xanh trời */
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.container .section p {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.container .section strong {
+    color: #007BFF;
+}
+
+.container .section img {
+    width: 500px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 123, 255, 0.2);
+    object-fit: cover;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ..container-ship */
+.container-ship {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fdfdfd;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    font-family: 'Segoe UI', sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+
+.ship-process h3,
+.ship-thank h3 {
+    font-size: 26px;
+    color: #007BFF;
+    margin-bottom: 15px;
+}
+
+.ship-steps {
+    padding-left: 20px;
+    font-size: 16px;
+    list-style-position: inside;
+}
+
+.ship-steps li {
+    margin-bottom: 8px;
+}
+
+.ship-contact {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #e6f3ff;
+    border-left: 4px solid #007BFF;
+    border-radius: 8px;
+}
+
+.ship-contact h4 {
+    margin-top: 10px;
+    font-size: 18px;
+    color: #003366;
+}
+
+.ship-contact span {
+    display: block;
+    margin-top: 5px;
+    font-weight: bold;
+    color: #007BFF;
+    font-size: 16px;
+}
+
+.ship-contact a {
+    color: #ff5722;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.ship-thank {
+    margin-top: 40px;
+    background-color: #fff9f0;
+    padding: 20px;
+    border-left: 4px solid #ff9800;
+    border-radius: 8px;
+}
+
+.ship-thank p {
+    font-size: 16px;
+    color: #555;
+    text-align: justify;
+}
+/* ...achievements-section... */
+
+.achievements-section {
+  background-color: #fffaf5;
+  padding: 50px 20px;
+  border-radius: 12px;
+  text-align: center;
+}
+
+.achievements-title {
+  font-size: 32px;
+  color: #007BFF;
+  margin-bottom: 40px;
+  font-weight: bold;
+}
+
+.achievements-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.achievement-card {
+  background-color: #ffffff;
+  border: 1px solid #ffd2b3;
+  border-radius: 12px;
+  width: 300px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: left;
+}
+
+.achievement-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+}
+
+.achievement-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.achievement-heading {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+.achievement-text {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.achievement-content a {
+  font-size: 13px;
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+
+.achievement-content a:hover {
+  color: #007BFF;
+}
