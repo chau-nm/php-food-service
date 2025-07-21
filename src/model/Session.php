@@ -32,7 +32,8 @@ class Session
     public function get(string $key, $default = null): ?string
     {
         if (session_status() == PHP_SESSION_NONE) {
-            return null;
+            // return null;
+            session_start();
         }
         return $_SESSION[$key] ?? $default;
     }
