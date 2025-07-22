@@ -12,22 +12,30 @@
 </head>
 
 <body>
+
     <?php include __DIR__ . "/header.php" ?>
-    <section class="prodetails">
-        <div class="page-block">
-            <div class="block-left">
-                <a href=""> <img src="/assets/images/food/banhlocQB.jpg" alt=""> </a>
+
+    <?php if (isset($food)): ?>
+        <section class="prodetails">
+            <div class="page-block">
+                <div class="block-left">
+                    <img src="<?= htmlspecialchars($food->image ?? '/assets/images/food/default.jpg') ?>" alt="<?= htmlspecialchars($food->name) ?>">
+                </div>
+                <div class="block-right">
+                    <h5><?= htmlspecialchars($food->name) ?></h5>
+                    <span><?= htmlspecialchars($food->description) ?></span>
+                    <h6><?= number_format($food->price) ?> VND</h6>
+                    <button>Thêm</button>
+                </div>
             </div>
-            <div class="block-right">
-                <h5>Bánh lọc Quảng Bình</h5>
-                <span>1 phần bánh lọc nhân tôm,nấm mèo,...</span>
-                <p> Đồ ăn kèm: nước chấm, rau ăn kèm</p>
-                <h6> 25.000 VND</h6>
-                <button> Thêm </button>
-            </div>
-        </div>
-    </section>
+        </section>
+    <?php else: ?>
+        <p style="padding: 20px; text-align: center;">Không tìm thấy sản phẩm.</p>
+    <?php endif; ?>
+
     <?php include __DIR__ . "/footer.php" ?>
+
+
 </body>
 
 </html>
