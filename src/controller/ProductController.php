@@ -23,7 +23,7 @@ class ProductController extends AbstractController
 
         return $this->render("product", ['food' => $food]);
     }
-
+    //danh sách sp
     public function list(Request $request): Response
     {
         $foods = ProductService::getInstance()->getAll();
@@ -42,7 +42,7 @@ class ProductController extends AbstractController
     {
         $uuid = $_GET['uuid'] ?? $_POST['uuid'] ?? null;
         if (!$uuid) {
-            return new ErrorResponse('Thiếu mã sản phẩm', true);
+            return new ErrorResponse('!chưa nhập mã sản phầm', true);
         }
 
         $food = ProductService::getInstance()->findByUUID($uuid);
@@ -74,7 +74,7 @@ class ProductController extends AbstractController
     {
         $uuid = $_GET['uuid'] ?? $_POST['uuid'] ?? null;
         if (!$uuid) {
-            return new ErrorResponse('Thiếu mã sản phẩm', true);
+            return new ErrorResponse('!chưa nhập mã sản phầm', true);
         }
 
         $deleted = ProductService::getInstance()->deleteByUUID($uuid);
@@ -93,7 +93,7 @@ class ProductController extends AbstractController
         $foodRequest = FoodRequest::load($request);
 
         if (!$foodRequest->uuid) {
-            return new ErrorResponse('Thiếu mã sản phẩm', true);
+            return new ErrorResponse('!chưa nhập mã sản phầm', true);
         }
 
         $food = ProductService::getInstance()->update($foodRequest);
