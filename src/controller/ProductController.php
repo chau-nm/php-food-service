@@ -14,7 +14,14 @@ class ProductController extends AbstractController
 {
     public function view(Request $request): ViewResponse
     {
-        return $this->render("product");
+        $uuid = $_GET['uuid'] ?? null;
+        $food = null;
+
+        if ($uuid) {
+            $food = ProductService::getInstance()->findByUUID($uuid);
+        }
+
+        return $this->render("product", ['food' => $food]);
     }
     //danh sách sp
     public function list(Request $request): Response

@@ -28,4 +28,9 @@ return [
         "method" => HttpMethod::GET,
         "controller" => "ProductController::list",
     ],
+    [
+        "url" => "/product",
+        "method" => HttpMethod::GET,
+        "controller" => "ProductController::view",
+    ],
 ];
