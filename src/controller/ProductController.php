@@ -5,11 +5,10 @@ namespace app\controller;
 use app\model\framework\AbstractController;
 use app\model\request\Request;
 use app\model\response\ViewResponse;
-use app\repository\FoodRepository;
-use app\model\response\Response;
 use app\model\response\ErrorResponse;
+use app\model\response\Response;
 use app\model\request\FoodRequest;
-use app\model\entity\Food;
+use app\service\ProductService;
 
 class ProductController extends AbstractController
 {
@@ -17,10 +16,10 @@ class ProductController extends AbstractController
     {
         return $this->render("product");
     }
-
+    //danh sách sp
     public function list(Request $request): Response
     {
-        $foods = FoodRepository::getInstance()->findAll();
+        $foods = ProductService::getInstance()->getAll();
 
         $foodDTOs = array_map(
             fn($food) => $food->toDTO(),
@@ -31,15 +30,15 @@ class ProductController extends AbstractController
         $response->setHeaders(['Content-Type' => 'application/json']);
         return $response;
     }
-
+    //chi tiết sp
     public function detail(Request $request): Response|ErrorResponse
     {
         $uuid = $_GET['uuid'] ?? $_POST['uuid'] ?? null;
         if (!$uuid) {
-            return new ErrorResponse('Thiếu mã sản phẩm', true);
+            return new ErrorResponse('!chưa nhập mã sản phầm', true);
         }
 
-        $food = FoodRepository::getInstance()->findByKey($uuid);
+        $food = ProductService::getInstance()->findByUUID($uuid);
 
         if (!$food) {
             return new ErrorResponse('Không tìm thấy sản phẩm', true);
@@ -49,28 +48,13 @@ class ProductController extends AbstractController
         $response->setHeaders(['Content-Type' => 'application/json']);
         return $response;
     }
-
-    
-    // Thêm mới sản phẩm
+    //tạo sp
     public function create(Request $request): Response|ErrorResponse
     {
         $foodRequest = FoodRequest::load($request);
+        $food = ProductService::getInstance()->create($foodRequest);
 
-        $food = new Food(
-            $foodRequest->uuid ?? uniqid(),
-            $foodRequest->name,
-            $foodRequest->description,
-            $foodRequest->image,
-            $foodRequest->price,
-            new \DateTimeImmutable(),
-            null,
-            null,
-            null
-        );
-
-        $result = FoodRepository::getInstance()->save($food);
-
-        if (!$result) {
+        if (!$food) {
             return new ErrorResponse('Không thể lưu sản phẩm', true);
         }
 
@@ -78,16 +62,15 @@ class ProductController extends AbstractController
         $response->setHeaders(['Content-Type' => 'application/json']);
         return $response;
     }
-
-    // Xóa sản phẩm
+    //xóa sp
     public function delete(Request $request): Response|ErrorResponse
     {
         $uuid = $_GET['uuid'] ?? $_POST['uuid'] ?? null;
         if (!$uuid) {
-            return new ErrorResponse('Thiếu mã sản phẩm', true);
+            return new ErrorResponse('!chưa nhập mã sản phầm', true);
         }
 
-        $deleted = FoodRepository::getInstance()->deleteByKey($uuid);
+        $deleted = ProductService::getInstance()->deleteByUUID($uuid);
 
         if (!$deleted) {
             return new ErrorResponse('Xóa sản phẩm thất bại', true);
@@ -97,31 +80,18 @@ class ProductController extends AbstractController
         $response->setHeaders(['Content-Type' => 'application/json']);
         return $response;
     }
-    
-    // Cập nhật sản phẩm
+    //sủa sp
     public function update(Request $request): Response|ErrorResponse
     {
         $foodRequest = FoodRequest::load($request);
 
         if (!$foodRequest->uuid) {
-            return new ErrorResponse('Thiếu mã sản phẩm', true);
+            return new ErrorResponse('!chưa nhập mã sản phầm', true);
         }
 
-        $food = new Food(
-            $foodRequest->uuid,
-            $foodRequest->name,
-            $foodRequest->description,
-            $foodRequest->image,
-            $foodRequest->price,
-            new \DateTimeImmutable(),
-            null,
-            null,
-            null
-        );
+        $food = ProductService::getInstance()->update($foodRequest);
 
-        $result = FoodRepository::getInstance()->save($food);
-
-        if (!$result) {
+        if (!$food) {
             return new ErrorResponse('Cập nhật sản phẩm thất bại', true);
         }
 
