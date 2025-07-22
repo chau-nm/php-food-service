@@ -22,7 +22,7 @@
                 <h5>Bánh lọc Quảng Bình</h5>
                 <span>1 phần bánh lọc nhân tôm,nấm mèo,...</span>
                 <p> Đồ ăn kèm: nước chấm, rau ăn kèm</p>
-                <h6> 25.000VND/phần </h6>
+                <h6> 25.000 VND</h6>
                 <button> Thêm </button>
             </div>
         </div>

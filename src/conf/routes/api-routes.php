@@ -23,4 +23,9 @@ return [
         "method" => HttpMethod::POST,
         "controller" => "AuthController::logout",
     ],
+    [
+        "url" => "/food",
+        "method" => HttpMethod::GET,
+        "controller" => "ProductController::list",
+    ],
 ];

@@ -15,21 +15,25 @@
     <?php include __DIR__ . "/header.php" ?>
     <section class="menu">
         <div class="menu-pro">
-            <?php for ($i = 0; $i < 100; $i++): ?>
-                <div class="menu-card">
-                    <div class="img-menu">
-                        <img src="/assets/images/food/phocuon.jpg" alt="">
+            <?php if (!empty($foods)): ?>
+                <?php foreach ($foods as $food): ?>
+                    <div class="menu-card">
+                        <div class="img-menu">
+                            <img src="<?= htmlspecialchars($food->image ?? '/assets/images/food/default.jpg') ?>" alt="">
+                        </div>
+                        <div>
+                            <a href="/product?uuid=<?= htmlspecialchars($food->uuid) ?>">
+                                <h5><?= htmlspecialchars($food->name) ?></h5>
+                            </a>
+                            <span><?= htmlspecialchars($food->description) ?></span>
+                            <h6><?= number_format($food->price) ?> VND</h6>
+                        </div>
+                        <button>Thêm món</button>
                     </div>
-                    <div>
-                    <a href="/product">
-                        <h5>Phở cuốn Hà Nội</h5>
-                    </a>    
-                        <span>1 cuốn đầy đủ topping</span>
-                        <h6> 10.000VND/cuốn </h6>
-                    </div>
-                    <button>Thêm món</button>
-                </div>
-            <?php endfor; ?>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <p>Không có món ăn nào.</p>
+            <?php endif; ?>
         </div>
     </section>
 
