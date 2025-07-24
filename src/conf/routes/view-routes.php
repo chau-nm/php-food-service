@@ -32,5 +32,10 @@ return [
         "url" => "/about",
         "method" => HttpMethod::GET,
         "controller" => "AboutController::view",
-    ]
+    ],
+    [
+        "url" => "/checkout",
+        "method" => HttpMethod::GET,
+        "controller" => "CheckoutController::view",
+    ],
 ];
