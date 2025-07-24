@@ -8,7 +8,7 @@ class Session
 
     private function __construct()
     {
-        if (session_status() == PHP_SESSION_NONE) {
+        if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
     }
@@ -23,19 +23,12 @@ class Session
 
     public function set(string $key, $value): void
     {
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
-        }
         $_SESSION[$key] = $value;
     }
 
-    public function get(string $key, $default = null): ?string
+    public function get(string $key, $default = null): mixed
     {
-        if (session_status() == PHP_SESSION_NONE) {
-            // return null;
-            session_start();
-        }
-        return $_SESSION[$key] ?? $default;
+        return $_SESSION[$key] ?? $default; 
     }
 
     public function has(string $key): bool

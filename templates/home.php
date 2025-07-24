@@ -25,7 +25,7 @@
                             <a href="/product?uuid=<?= htmlspecialchars($food->uuid) ?>">
                                 <h5><?= htmlspecialchars($food->name) ?></h5>
                             </a>
-                            <span><?= htmlspecialchars($food->description) ?></span>
+                            <!-- <span><?= htmlspecialchars($food->description) ?></span> -->
                             <h6><?= number_format($food->price) ?> VND</h6>
                         </div>
                         <button>Thêm món</button>
