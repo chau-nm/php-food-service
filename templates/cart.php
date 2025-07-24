@@ -27,8 +27,8 @@
                             <th>Hình ảnh</th>
                             <th>Giá</th>
                             <th>Số lượng</th>
-                            <th>Thành tiền</th>
-                            <th>Hành động</th>
+                            <th>Tổng/món</th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
