@@ -1,4 +1,9 @@
 /* --- header-menu ---- */
+.logo {
+    width: 150px;
+    height: cover;
+}
+
 .header-menu{
     display: flex;
     justify-content: space-between;
