@@ -58,7 +58,7 @@ input[type="number"] {
     border-radius: 6px;
 }
 
-.btn-xoa {
+.btn-remove {
     padding: 6px 12px;
     background-color: #ff4d4d;
     color: white;
@@ -67,7 +67,7 @@ input[type="number"] {
     cursor: pointer;
 }
 
-.btn-xoa:hover {
+.btn-remove:hover {
     background-color: #cc0000;
 }
 
@@ -192,7 +192,7 @@ input[type="number"] {
         padding: 5px;
     }
 
-    .btn-xoa {
+    .btn-remove {
         padding: 5px 10px;
         font-size: 14px;
     }

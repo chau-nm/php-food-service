@@ -6,6 +6,11 @@ use app\service\AuthService;
 $session = Session::getInstance();
 $authService = AuthService::getInstance();
 $user = $authService->getLoggedInUser();
+
+use app\service\CartService;
+
+$cartService = new CartService();
+$cartCount = $cartService->getTotalQuantity();
 ?>
 
 <section class="header-menu">
@@ -27,8 +32,8 @@ $user = $authService->getLoggedInUser();
             </a>
         <?php else: ?>
             <span style="font-size: 15px; color: #4287f5; font-weight: bold">
-                Xin chào!  
-                <?= htmlspecialchars($user->firstName . ' ' . $user->lastName) ?> 
+                Xin chào!
+                <?= htmlspecialchars($user->firstName . ' ' . $user->lastName) ?>
             </span>
             <a href="#" id="logoutBtn">
                 <button>ĐĂNG XUẤT</button>
@@ -36,8 +41,9 @@ $user = $authService->getLoggedInUser();
         <?php endif; ?>
 
         <span class="header-menu-cart">
-            <a href="/cart">
+            <a href="/cart" class="cart-icon">
                 <?php include PROJECT_ROOT . "/public/assets/icon/ic_shop_card.svg"; ?>
+                <span id="cart-count" class="cart-count"><?= $session->get("cart_count") ?? 0 ?></span>
             </a>
         </span>
     </div>

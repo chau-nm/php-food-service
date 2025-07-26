@@ -29,8 +29,18 @@ return [
         "controller" => "ProductController::list",
     ],
     [
-        "url" => "/product",
-        "method" => HttpMethod::GET,
-        "controller" => "ProductController::view",
+        "url" => "/api/cart/add",
+        "method" => HttpMethod::POST,
+        "controller" => "CartController::add",
+    ],
+    [
+        "url" => "/api/cart/update",
+        "method" => HttpMethod::POST,
+        "controller" => "CartController::update",
+    ],
+    [
+        "url" => "/api/cart/remove",
+        "method" => HttpMethod::POST,
+        "controller" => "CartController::remove",
     ],
 ];

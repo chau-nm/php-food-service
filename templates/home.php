@@ -28,7 +28,9 @@
                             <!-- <span><?= htmlspecialchars($food->description) ?></span> -->
                             <h6><?= number_format($food->price) ?> VND</h6>
                         </div>
-                        <button>Thêm món</button>
+                        <button class="add-to-cart" data-id="<?= $food->id ?>">
+                            Thêm món
+                        </button>
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
@@ -39,5 +41,7 @@
 
     <?php include __DIR__ . "/footer.php" ?>
 </body>
+
+<script type="module" src="/assets/js/cart.js"></script>
 
 </html>
