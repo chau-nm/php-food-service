@@ -27,7 +27,7 @@
                     <h6><?= number_format($food->price) ?> VND </h6>
 
                     <form action="/api/cart/add" method="POST" class="add-to-cart-form">
-                        <input type="hidden" name="food_uuid" value="<?= htmlspecialchars($food->uuid) ?>">
+                        <input type="hidden" name="food_uuid" class="cart-quantity" value="<?= htmlspecialchars($food->uuid) ?>">
                         <input type="number" name="quantity" value="1" min="1" style="width: 60px; padding: 5px;">
                         <button type="submit" class="add-to-cart-btn">Thêm vào giỏ</button>
                     </form>
@@ -43,7 +43,5 @@
 </body>
 
 <script type="module" src="/assets/js/cart.js"></script>
-
-</script>
 
 </html>

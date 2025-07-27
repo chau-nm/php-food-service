@@ -1,38 +1,38 @@
 import Ajax from "./util/ajax.js";
 
-document.querySelectorAll(".cart-quantity").forEach((input) => {
-    input.addEventListener("change", async (e) => {
-        const quantity = parseInt(input.value);
-        const id = input.dataset.id;
+document.querySelectorAll(".add-to-cart-form").forEach((form) => {
+    form.addEventListener("submit", async (e) => {
+        const food_uuid = form.querySelector("input[name='food_uuid']").value;
+        const quantityInput = form.querySelector("input[name='quantity']");
+        const quantity = parseInt(quantityInput.value);
 
-        if (isNaN(quantity) || quantity < 1) return;
-
-        const ajax = new Ajax();
-        const res = await ajax.post("/cart", {
-            action: "update",
-            id,
-            quantity
-        });
+        if (!food_uuid || isNaN(quantity) || quantity < 1) {
+            alert("Vui lòng nhập số lượng hợp lệ.");
+            return;
+        }
 
         try {
+            const ajax = new Ajax();
+            const res = await ajax.post("/api/cart/add", {
+                food_uuid,
+                quantity,
+            });
+
             const json = await res.json();
+
             if (json.success) {
-                const row = input.closest("tr");
-                const itemTotalCell = row.querySelector(".item-total");
-                if (itemTotalCell) {
-                    itemTotalCell.textContent = Number(json.itemTotal).toLocaleString("vi-VN") + " VND";
+                const cartCountEl = document.querySelector("#cart-count");
+                if (cartCountEl && json.cartCount !== undefined) {
+                    cartCountEl.textContent = json.cartCount;
                 }
 
-                const totalElement = document.querySelector(".total-payment strong");
-                if (totalElement) {
-                    totalElement.textContent = Number(json.total).toLocaleString("vi-VN") + " VND";
-                }
+                alert("Đã thêm vào giỏ hàng!");
             } else {
-                alert("❌ Cập nhật thất bại: " + (json.message || ""));
+                alert("Thêm thất bại: " + (json.message || "Lỗi không xác định"));
             }
-        } catch (err) {
-            console.error("Lỗi xử lý JSON:", err);
-            alert("⚠️ Không thể cập nhật số lượng.");
+        } catch (error) {
+            console.error("Lỗi khi thêm vào giỏ:", error);
+            alert("Đã xảy ra lỗi khi thêm vào giỏ hàng.");
         }
     });
 });
