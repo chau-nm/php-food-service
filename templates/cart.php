@@ -70,7 +70,7 @@ $cart = $session->get("cart") ?? [];
                                     </td>
                                     <td><?= number_format($itemTotal, 0, ',', '.') ?>VND</td>
                                     <td class="cart-item">
-                                            <button class="btn-remove" data-food-uuid="<?= $item['uuid'] ?>">Xoá</button>
+                                        <button type="button" class="btn-remove" data-food-uuid="<?= $item['uuid'] ?>">Xoá</button>
                                     </td>
                                 </tr>
                         <?php

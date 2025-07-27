@@ -9,22 +9,22 @@ return [
         "controller" => "HealthController::index",
     ],
     [
-        "url" => "/auth/login",
+        "url" => "/api/auth/login",
         "method" => HttpMethod::POST,
         "controller" => "AuthController::login",
     ],
     [
-        "url" => "/auth/register",
+        "url" => "/api/auth/register",
         "method" => HttpMethod::POST,
         "controller" => "AuthController::register",
     ],
     [
-        "url" => "/auth/logout",
+        "url" => "/api/auth/logout",
         "method" => HttpMethod::POST,
         "controller" => "AuthController::logout",
     ],
     [
-        "url" => "/food",
+        "url" => "/api/food",
         "method" => HttpMethod::GET,
         "controller" => "ProductController::list",
     ],

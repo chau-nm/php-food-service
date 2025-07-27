@@ -47,8 +47,7 @@ class CartService
     public function removeFromCart(string $foodUuid): void
     {
         $cart = $this->session->get('cart', []);
-        unset($cart[$foodUuid]);
-        $this->session->set('cart', $cart);
+        $this->session->set('cart', array_filter($cart, fn($item) => $item["uuid"] !== $foodUuid));
     }
 
     public function clearCart(): void

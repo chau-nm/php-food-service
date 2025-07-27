@@ -6,7 +6,7 @@ document.querySelectorAll(".btn-remove").forEach((btn) => {
 
         const uuid = btn.dataset.foodUuid;
         const ajax = new Ajax();
-        const res = await ajax.post("/cart/remove", { food_uuid: uuid });
+        const res = await ajax.post("/api/cart/remove", { food_uuid: uuid });
 
         const json = await res.json();
 

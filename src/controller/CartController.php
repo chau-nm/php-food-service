@@ -67,7 +67,6 @@ class CartController extends AbstractController
         exit;
     }
 
-
     public function remove(Request $request): Response
     {
         $raw = $request->getContent();
@@ -78,16 +77,14 @@ class CartController extends AbstractController
         if (!$uuid) {
             return new Response("Missing food_uuid", 400);
         }
-        $session = Session::getInstance();
-        $cart = $session->get("cart") ?? [];
-
-        unset($cart[$uuid]);
-        $session->set("cart", $cart);
+        $cartService = new CartService();
+        $cartService->removeFromCart($uuid);
 
         return new Response(json_encode([
-            "count" => count($cart),
+            "uuid" => $uuid,
         ]), 200, ["Content-Type" => "application/json"]);
     }
+
     public function clear()
     {
         if (!$this->isLoggedIn()) {
