@@ -9,7 +9,7 @@ signupForm.addEventListener("submit", async (e) => {
     const data = Object.fromEntries(formData.entries());
 
     const ajax = new Ajax();
-    const response = await ajax.post("/auth/register", data);
+    const response = await ajax.post("/api/auth/register", data);
     const responseData = await response.json();
     if (response.ok) {
         alert("Đăng ký thành công");

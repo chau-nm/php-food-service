@@ -1,3 +1,11 @@
+<?php
+
+use app\model\Session;
+
+$session = Session::getInstance();
+$cart = $session->get("cart") ?? [];
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -32,16 +40,43 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Bánh lọc Quảng Bình</td>
-                            <td><img src="/assets/images/food/banhlocQB.jpg" alt=""></td>
-                            <td>30.000đ</td>
-                            <td><input type="number" value="1"></td>
-                            <td>30.000đ</td>
-                            <td><button class="btn-xoa">Xóa</button></td>
-                        </tr>
-                    </tbody>
+                        <?php
+                        $total = 0;
+                        $index = 1;
+                        if (empty($cart)):
+                        ?>
+                            <tr>
+                                <td colspan="7" style="text-align: center; padding: 20px;">
+                                    Giỏ hàng của bạn đang trống!
+                                </td>
+                            </tr>
+                            <?php
+                        else:
+                            foreach ($cart as $item):
+                                $itemTotal = $item['price'] * $item['quantity'];
+                                $total += $itemTotal;
+                            ?>
+                                <tr>
+                                    <td><?= $index++ ?></td>
+                                    <td><?= htmlspecialchars($item['name']) ?></td>
+                                    <td><img src="<?= htmlspecialchars($item['image']) ?>" alt=""></td>
+                                    <td><?= number_format($item['price'], 0, ',', '.') ?>VND</td>
+                                    <td>
+                                        <form action="/cart" method="post" style="display: inline-flex;">
+                                            <input type="hidden" name="action" value="update">
+                                            <input type="hidden" name="id" value="<?= $item['uuid'] ?>">
+                                            <input type="number" class="cart-quantity" data-id="<?= $item['uuid'] ?>" value="<?= $item['quantity'] ?>" min="1" style="width: 60px;">
+                                        </form>
+                                    </td>
+                                    <td><?= number_format($itemTotal, 0, ',', '.') ?>VND</td>
+                                    <td class="cart-item">
+                                        <button type="button" class="btn-remove" data-food-uuid="<?= $item['uuid'] ?>">Xoá</button>
+                                    </td>
+                                </tr>
+                        <?php
+                            endforeach;
+                        endif;
+                        ?>
                 </table>
             </div>
 
@@ -49,7 +84,7 @@
                 <h3>Tóm tắt đơn hàng</h3>
                 <div class="summary-row">
                     <span>Tạm tính:</span>
-                    <span>90.000đ</span>
+                    <span><?= number_format($total, 0, ',', '.') ?> VND</span>
                 </div>
                 <div class="summary-row">
                     <span>Mã giảm giá:</span>
@@ -62,7 +97,7 @@
                 <hr>
                 <div class="summary-row total-payment">
                     <strong>Tổng thanh toán:</strong>
-                    <strong>90.000đ</strong>
+                    <strong><?= number_format($total, 0, ',', '.') ?> VND</strong>
                 </div>
                 <div class="checkout-button">
                     <a href="/checkout" class="btn-checkout">Tiến hành thanh toán</a>
@@ -73,5 +108,8 @@
 
     <?php include __DIR__ . "/footer.php" ?>
 </body>
+
+<script type="module" src="/assets/js/cartUpdate.js"></script>
+<script type="module" src="/assets/js/cartRemove.js"></script>
 
 </html>

@@ -9,7 +9,7 @@ loginForm.addEventListener("submit", async (e) => {
     const data = Object.fromEntries(formData.entries());
 
     const ajax = new Ajax();
-    const response = await ajax.post("/auth/login", data);
+    const response = await ajax.post("/api/auth/login", data);
     const responseData = await response.json();
     if (response.ok) {
         alert("Đăng nhập thành công");

@@ -7,7 +7,7 @@ if (logoutBtn) {
         e.preventDefault();
 
         const ajax = new Ajax();
-        const response = await ajax.post("/auth/logout");
+        const response = await ajax.post("/api/auth/logout");
 
         if (response.ok) {
             location.href = "/login";

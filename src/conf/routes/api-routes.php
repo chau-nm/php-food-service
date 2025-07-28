@@ -9,28 +9,38 @@ return [
         "controller" => "HealthController::index",
     ],
     [
-        "url" => "/auth/login",
+        "url" => "/api/auth/login",
         "method" => HttpMethod::POST,
         "controller" => "AuthController::login",
     ],
     [
-        "url" => "/auth/register",
+        "url" => "/api/auth/register",
         "method" => HttpMethod::POST,
         "controller" => "AuthController::register",
     ],
     [
-        "url" => "/auth/logout",
+        "url" => "/api/auth/logout",
         "method" => HttpMethod::POST,
         "controller" => "AuthController::logout",
     ],
     [
-        "url" => "/food",
+        "url" => "/api/food",
         "method" => HttpMethod::GET,
         "controller" => "ProductController::list",
     ],
     [
-        "url" => "/product",
-        "method" => HttpMethod::GET,
-        "controller" => "ProductController::view",
+        "url" => "/api/cart/add",
+        "method" => HttpMethod::POST,
+        "controller" => "CartController::add",
+    ],
+    [
+        "url" => "/api/cart/update",
+        "method" => HttpMethod::POST,
+        "controller" => "CartController::update",
+    ],
+    [
+        "url" => "/api/cart/remove",
+        "method" => HttpMethod::POST,
+        "controller" => "CartController::remove",
     ],
 ];
