@@ -2,6 +2,9 @@ import Ajax from "./util/ajax.js";
 
 document.querySelectorAll(".add-to-cart-form").forEach((form) => {
     form.addEventListener("submit", async (e) => {
+
+        e.preventDefault();
+        
         const food_uuid = form.querySelector("input[name='food_uuid']").value;
         const quantityInput = form.querySelector("input[name='quantity']");
         const quantity = parseInt(quantityInput.value);

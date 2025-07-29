@@ -1,10 +1,19 @@
+<?php
+
+use app\model\Session;
+
+$session = Session::getInstance();
+$cart = $session->get("cart") ?? [];
+$total = 0;
+?>
+
 <!DOCTYPE html>
 <html lang="vi">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thanh toán - Vietnamese Cuisine</title>
+    <title>Vietnamese Cuisine Checkout</title>
     <link rel="stylesheet" href="/assets/css/app.css">
     <link rel="stylesheet" href="/assets/css/header.css">
     <link rel="stylesheet" href="/assets/css/footer.css">
@@ -18,7 +27,7 @@
         <div class="checkout-container">
             <h2 class="checkout-title">Thông tin thanh toán</h2>
 
-            <form class="checkout-form" action="process_checkout.php" method="POST">
+            <form class="checkout-form" action="/checkout/process" method="POST">
                 <label for="fullname">Họ và tên</label>
                 <input type="text" id="fullname" name="fullname" required>
 
@@ -38,22 +47,33 @@
                             <tr>
                                 <th>Sản phẩm</th>
                                 <th>Số lượng</th>
-                                <th>Giá</th>
+                                <th>Thành tiền</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Bánh lọc Quảng Bình</td>
-                                <td>3</td>
-                                <td>90.000đ</td>
-                            </tr>
+                            <?php if (empty($cart)): ?>
+                                <tr>
+                                    <td colspan="3" style="text-align: center;"> Giỏ hàng của bạn đang trống! </td>
+                                </tr>
+                            <?php else: ?>
+                                <?php foreach ($cart as $item):
+                                    $itemTotal = $item['price'] * $item['quantity'];
+                                    $total += $itemTotal;
+                                ?>
+                                    <tr>
+                                        <td><?= htmlspecialchars($item['name']) ?></td>
+                                        <td><?= $item['quantity'] ?></td>
+                                        <td><?= number_format($itemTotal, 0, ',', '.') ?> VND</td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                         </tbody>
                     </table>
 
                     <div class="summary-detail">
                         <div class="summary-row">
                             <span>Tạm tính:</span>
-                            <span>90.000đ</span>
+                            <span><?= number_format($total, 0, ',', '.') ?> VND</span>
                         </div>
                         <div class="summary-row">
                             <label for="coupon">Mã giảm giá:</label>
@@ -65,9 +85,10 @@
                         </div>
                         <div class="summary-row total-payment">
                             <strong>Tổng thanh toán:</strong>
-                            <strong>99.000đ</strong>
+                            <strong><?= number_format($total, 0, ',', '.') ?> VND</strong>
                         </div>
                     </div>
+
                     <div class="payment-method">
                         <label for="payment_method"><strong>Phương thức thanh toán:</strong></label>
                         <select id="payment_method" name="payment_method" required>
@@ -76,6 +97,7 @@
                             <option value="cod">Thanh toán khi nhận hàng (COD)</option>
                         </select>
                     </div>
+
                     <div style="text-align: center; margin-top: 20px;">
                         <button type="submit" class="btn-submit-order">Mua ngay</button>
                     </div>
@@ -85,5 +107,7 @@
 
     <?php include __DIR__ . "/footer.php" ?>
 </body>
+
+<script type="module" src="/assets/js/checkout.js"></script>
 
 </html>
