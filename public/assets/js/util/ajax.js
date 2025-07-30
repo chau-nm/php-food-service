@@ -9,7 +9,8 @@ export default class Ajax {
             headers: {
                 'Content-Type': 'application/json',
                 ...headers
-            }
+            },
+            credentials: 'include'
         };
         if (data) {
             config.body = JSON.stringify(data);

@@ -43,4 +43,9 @@ return [
         "method" => HttpMethod::POST,
         "controller" => "CartController::remove",
     ],
+    [
+        "url" => "/api/checkout/process",
+        "method" => HttpMethod::POST,
+        "controller" => "CheckoutController::process",
+    ],
 ];
