@@ -38,4 +38,9 @@ return [
         "method" => HttpMethod::GET,
         "controller" => "CheckoutController::view",
     ],
+    [
+        "url" => "/checkout_success",
+        "method" => HttpMethod::GET,
+        "controller" => "CheckoutSuccessController::view",
+    ],
 ];
