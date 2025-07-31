@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
             alert(json.message || "Đặt hàng thành công!");
-            window.location.href = `/order-success?id=${json.order_id}`;
+            window.location.href = `/checkout_success?id=${json.order_id}`;
         } catch (error) {
             console.error("Checkout error:", error);
             alert("Có lỗi xảy ra khi kết nối với server!");

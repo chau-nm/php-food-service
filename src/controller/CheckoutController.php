@@ -2,63 +2,72 @@
 
 namespace app\controller;
 
-use app\model\framework\AbstractController;
-use app\model\request\Request;
-use app\model\response\ViewResponse;
-use app\model\response\Response;
+use app\service\CheckoutService;
 use app\model\request\CheckoutRequest;
 use app\model\Session;
 
-class CheckoutController extends AbstractController
+class CheckoutController
 {
-    public function view(Request $request): ViewResponse
-    {
-        if (!$this->isLoggedIn()) {
-            $this->redirect("/login");
-        }
+    private CheckoutService $checkoutService;
+    private Session $session;
 
-        return $this->render("checkout");
+    public function __construct()
+    {
+        $this->checkoutService = CheckoutService::getInstance();
+        $this->session = Session::getInstance();
     }
 
-    public function process(Request $request): Response
+    public function process()
     {
-        if (!$this->isLoggedIn()) {
-            return new Response(json_encode([
-                "success" => false,
-                "message" => "Vui lòng đăng nhập để thanh toán!"
-            ]), 401, ["Content-Type" => "application/json"]);
+        header('Content-Type: application/json'); 
+
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+            http_response_code(405);
+            echo json_encode(["success" => false, "message" => "Phương thức không được phép"]);
+            return;
         }
 
-        $session = Session::getInstance();
-        $user = $session->get('user');
+        $input = json_decode(file_get_contents("php://input"), true) ?? $_POST;
 
-        if (!$user || !isset($user['uuid'])) {
-            return new Response(json_encode([
-                "success" => false,
-                "message" => "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại!"
-            ]), 401, ["Content-Type" => "application/json"]);
+        $fullname = trim($input['fullname'] ?? '');
+        $phone = trim($input['phone'] ?? '');
+        $address = trim($input['address'] ?? '');
+        $note = trim($input['note'] ?? '');
+        $paymentMethod = trim($input['payment_method'] ?? '');
+
+        $user = $this->session->get("user");
+        if (!$user) {
+            http_response_code(401);
+            echo json_encode(["success" => false, "message" => "Chưa đăng nhập hoặc phiên hết hạn"]);
+            return;
         }
 
-        $checkoutRequest = CheckoutRequest::load($request);
-        if (!$checkoutRequest->isValid()) {
-            return new Response(json_encode([
-                "success" => false,
-                "message" => "Dữ liệu không hợp lệ!"
-            ]), 400, ["Content-Type" => "application/json"]);
+        if (!$fullname || !$phone || !$address || !$paymentMethod) {
+            echo json_encode(["success" => false, "message" => "Vui lòng nhập đầy đủ thông tin!"]);
+            return;
         }
 
-        $order = \app\service\CheckoutService::getInstance()->createOrder($user['uuid'], $checkoutRequest);
-        if (!$order) {
-            return new Response(json_encode([
-                "success" => false,
-                "message" => "Giỏ hàng trống hoặc không thể tạo đơn hàng!"
-            ]), 400, ["Content-Type" => "application/json"]);
-        }
+        $request = new CheckoutRequest(
+            fullname: $fullname,
+            phone: $phone,
+            address: $address,
+            note: $note,
+            paymentMethod: $paymentMethod
+        );
 
-        return new Response(json_encode([
-            "success" => true,
-            "message" => "Đặt hàng thành công!",
-            "order_id" => $order->id
-        ]), 200, ["Content-Type" => "application/json"]);
+        $order = $this->checkoutService->createOrder($user['uuid'], $request);
+
+        if ($order) {
+            echo json_encode([
+                "success" => true,
+                "message" => "Đặt hàng thành công!",
+                "order_id" => $order->id
+            ]);
+        } else {
+            echo json_encode([
+                "success" => false,
+                "message" => "Giỏ hàng trống hoặc có lỗi xảy ra khi đặt hàng"
+            ]);
+        }
     }
 }

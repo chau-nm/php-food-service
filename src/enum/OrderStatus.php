@@ -4,9 +4,9 @@ namespace app\enum;
 
 enum OrderStatus: string
 {
-    const DRAFT = 'draft';
-    const SENDING = 'sending';
-    const PAID = 'paid';
-    const DELIVERED = 'delivered';
-    const REJECTED = 'rejected';
+    case DRAFT = 'draft';
+    case SENDING = 'sending';
+    case PAID = 'paid';
+    case DELIVERED = 'delivered';
+    case REJECTED = 'rejected';
 }

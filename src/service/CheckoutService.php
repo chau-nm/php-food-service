@@ -6,6 +6,7 @@ use app\model\Session;
 use app\repository\OrderRepository;
 use app\model\entity\Order;
 use app\model\request\CheckoutRequest;
+use app\enum\OrderStatus;
 
 class CheckoutService
 {
@@ -40,7 +41,7 @@ class CheckoutService
         $order = new Order(
             id: $orderId,
             userUuid: $userUuid,
-            status: "PENDING",
+            status: OrderStatus::DRAFT, 
             address: $request->address,
             phone: $request->phone,
             orderDate: new \DateTimeImmutable(),
@@ -50,10 +51,11 @@ class CheckoutService
             updatedBy: null
         );
 
+        // Lưu đơn hàng vào DB
         $savedOrder = $this->orderRepo->save($order);
 
         if ($savedOrder) {
-            $this->session->delete("cart"); 
+            $this->session->delete("cart"); // ✅ Xóa giỏ hàng sau khi đặt hàng
         }
 
         return $savedOrder;

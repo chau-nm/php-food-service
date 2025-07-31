@@ -19,7 +19,7 @@ return [
         "controller" => "ProductController::view",
     ],
     [
-        "url" => "/login",
+        "url" => "/login", 
         "method" => HttpMethod::GET,
         "controller" => "LoginController::view",
     ],

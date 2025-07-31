@@ -1,13 +1,14 @@
 <?php
 
 namespace app\model\entity;
+use app\enum\OrderStatus; 
 
 class Order
 {
     public function __construct(
         public int                $id,
         public string             $userUuid,
-        public string        $status,
+        public OrderStatus        $status,    // ✅ dùng enum thay vì string
         public string             $address,
         public string             $phone,
         public \DateTimeImmutable $orderDate,
@@ -15,16 +16,14 @@ class Order
         public ?\DateTimeImmutable $updatedAt,
         public ?string             $createdBy,
         public ?string             $updatedBy
-    )
-    {
-    }
+    ) {}
 
     public static function fromQueryResult(array $queryResult): static
     {
         return new static(
             $queryResult['id'],
             $queryResult['user_uuid'],
-            $queryResult['status'],
+            OrderStatus::from($queryResult['status']), // ✅ convert string từ DB sang enum
             $queryResult['address'],
             $queryResult['phone'],
             isset($queryResult['order_date']) ? new \DateTimeImmutable($queryResult['order_date']) : null,
