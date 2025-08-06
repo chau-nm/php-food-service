@@ -4,24 +4,24 @@ namespace app\repository;
 
 use app\conf\Database;
 use app\model\entity\Order;
+use app\enum\OrderStatus; // ✅ import enum
 
 class OrderRepository implements RepositoryInterface
 {
-
     private static $instance;
     private \PDO $db;
 
     private const FULL_ATTRIBUTES = "
-                `id`,
-                `user_uuid`,
-                `status`,
-                `address`,
-                `phone`,
-                `order_date`,
-                `created_at`,
-                `updated_at`,
-                `created_by`,
-                `updated_by`
+        `id`,
+        `user_uuid`,
+        `status`,
+        `address`,
+        `phone`,
+        `order_date`,
+        `created_at`,
+        `updated_at`,
+        `created_by`,
+        `updated_by`
     ";
 
     private const TABLE_NAME = "`order`";
@@ -45,6 +45,7 @@ class OrderRepository implements RepositoryInterface
         $prepare = $this->db->prepare($query);
         $prepare->execute([$key]);
         $result = $prepare->fetch(\PDO::FETCH_ASSOC);
+
         return $result ? Order::fromQueryResult($result) : null;
     }
 
@@ -54,6 +55,7 @@ class OrderRepository implements RepositoryInterface
         $prepare = $this->db->prepare($query);
         $prepare->execute();
         $result = $prepare->fetchAll(\PDO::FETCH_ASSOC);
+
         return Order::fromQueryArrayResult($result);
     }
 
@@ -71,7 +73,6 @@ class OrderRepository implements RepositoryInterface
 
         $stmt = $this->db->prepare($sql);
         $stmt->execute($where);
-
         $results = $stmt->fetchAll(\PDO::FETCH_ASSOC);
 
         return Order::fromQueryArrayResult($results);
@@ -79,6 +80,7 @@ class OrderRepository implements RepositoryInterface
 
     public function save(mixed $entity): mixed
     {
+        // Kiểm tra order đã tồn tại hay chưa
         $stmt = $this->db->prepare("SELECT COUNT(`id`) FROM " . self::TABLE_NAME . " WHERE id = :id");
         $stmt->execute(['id' => $entity->id]);
         $exists = $stmt->fetchColumn() > 0;
@@ -110,19 +112,19 @@ class OrderRepository implements RepositoryInterface
         $result = $stmt->execute([
             'id' => $entity->id,
             'user_uuid' => $entity->userUuid,
-            'status' => $entity->status->value,
+            'status' => $entity->status instanceof OrderStatus ? $entity->status->value : $entity->status, // ✅ hỗ trợ enum
             'address' => $entity->address,
             'phone' => $entity->phone,
             'order_date' => $entity->orderDate->format('Y-m-d H:i:s'),
             'created_at' => $entity->createdAt->format('Y-m-d H:i:s'),
-            'updated_at' => $entity->updatedAt ? $entity->updatedAt->format('Y-m-d H:i:s') : null,
+            'updated_at' => $entity->updatedAt?->format('Y-m-d H:i:s'),
             'created_by' => $entity->createdBy,
             'updated_by' => $entity->updatedBy
         ]);
 
         return $result ? $entity : null;
     }
-    
+
     public function deleteByKey(string $key): int
     {
         $stmt = $this->db->prepare("DELETE FROM " . self::TABLE_NAME . " WHERE id = :id");

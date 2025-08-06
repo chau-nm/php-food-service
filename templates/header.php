@@ -16,11 +16,11 @@ $cartCount = $cartService->getTotalQuantity();
 <section class="header-menu">
     <div class="header-menu-left">
         <ul>
-            <li> <a href=""> <img class="logo" src="/assets/images/logo-food.jpg" alt=""> </a> </li>
-            <li> <a href=""> THỰC ĐƠN </a> </li>
-            <li> <a href=""> KHUYẾN MÃI </a> </li>
-            <li> <a href=""> DỊCH VỤ </a> </li>
-            <li> <a href=""> HỆ THỐNG NHÀ HÀNG </a> </li>
+            <li> <a href="/home"> <img class="logo" src="/assets/images/logo-food.jpg" alt=""> </a> </li>
+            <li> <a href="/home"> THỰC ĐƠN </a> </li>
+            <li> <a href=""> LỊCH SỬ ĐẶT HÀNG </a></li>
+            <li> <a href="/services"> DỊCH VỤ </a> </li>
+            <li> <a href="/about"> HỆ THỐNG NHÀ HÀNG </a> </li>
         </ul>
     </div>
 
